@@ -118,7 +118,7 @@ public class Poetry2Dao {
 		
 		
 		String sql = "SELECT * from dynasty,(SELECT * from auther,poetry WHERE atr_rid = pty_atr)"
-				+ "as b WHERE dny_rid = atr_dny AND pty_rid != ? AND dny_cot = ? limit 5";
+				+ "as b WHERE dny_rid = atr_dny AND pty_rid != ? AND dny_cot = ? limit 5 AND pty_smt=1";
 		try {
 			//获取执行对象
 			pstmt = cont.prepareStatement(sql);

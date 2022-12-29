@@ -52,9 +52,9 @@
 </head>
 <script type="text/javascript">
     function fabulous(id) {
-        var num = document.getElementById("num").innerHTML;
+        var num = document.getElementById("number").innerHTML;
         num = Number(num) + Number(1);
-        document.getElementById("num").innerHTML = num;
+        document.getElementById("number").innerHTML = num;
         <%Poetry poetry = (Poetry)request.getAttribute("Poetrytext");
         Poetry2Dao poetryDao = new Poetry2Dao();
         poetryDao.updateselectPoetryById(poetry.getRid());%>
@@ -303,7 +303,7 @@
 
                     <!-- 反馈错误 -->
                     <div class="col-xl-auto col-lg-12 col-sm-auto col-12 p-2">
-                        <a href="../contact.jsp?PoetryId=<%=poetry.getRid()%>&PoetryName=<%=poetry.getTitle()%>"
+                        <a href="contact.jsp?PoetryId=<%=poetry.getRid()%>&PoetryName=<%=poetry.getTitle()%>"
                            class="d-block btn  btn-danger"><i class="fa fa-warning mr-1"></i>反馈错误 </a>
                     </div>
                     <!-- Sidebar (Job Overview) End -->
