@@ -1,5 +1,6 @@
 package com.example.ancientchineselearning.tools;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,24 +13,20 @@ import java.util.List;
 
 public class JsoupTools {
 
-    public static List<String> getIdioms(String text, int page) throws IOException {
+    public static List<String> getIdioms(String text) throws IOException {
         List<String> result = new ArrayList<>();
-        String url = "http://www.66xo.com/api?app=search&q="+ text +"&page="+ page;
+        String url = "https://www.chazidian.com/cy/?q=" + text;
 
-        Document document = Jsoup.connect(url).get();
-        Elements elements = document.select("#category > ul > li > a");
+        Connection connection = Jsoup.connect(url);
+        connection.data("q", text);
+        Document document = connection.post();
+        Elements elements = document.select("body > div.main > div.main_left > div.box > div.box_content > ul > li > a");
 
         Iterator<Element> iterator = elements.iterator();
         while (iterator.hasNext()) {
             String idiom = iterator.next().text();
             if (idiom != null &&  !"".equals(idiom)) {
                 result.add(idiom);
-            }
-        }
-        if (elements.size() == 15) {
-            List<String> res = getIdioms(text, page+1);
-            for (String str : res) {
-                result.add(str);
             }
         }
         return result;

@@ -24,7 +24,7 @@ public class idiomFindServlet extends HttpServlet {
         String text = request.getParameter("findText");
 
         List<String> result = new ArrayList<>();
-        result = JsoupTools.getIdioms(text, 1);
+        result = JsoupTools.getIdioms(text);
 //        System.out.println(result);
         request.setAttribute("result", result);
         request.getRequestDispatcher("chengyu.jsp").forward(request, response);
